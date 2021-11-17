@@ -1,10 +1,30 @@
-const fs = require('fs');
+const fs = require('fs')
+const express = require('express');
 
+const app = express();
+const PORT = 8080;
+ 
+// Hosting Express
+app.get('/', function (req, res) {
+  res.send('Express Test is Working!');
+})
+app.get('/productos', function (req, res) {
+    res.send(test.getAll());
+  })
+  app.get('/productosRandom', function (req, res) {
+    let array = test.getAll()
+    let randomized = array[Math.floor(Math.random()*array.length)];
+    res.send(randomized);
+  })
+app.listen(PORT, () => console.log('The port is: ' + PORT));
+
+
+// ----- Container Constructor
 class Container{
     constructor(url){
         this.url = url
     };
-
+    // Save the products into the array.
     save(obj){
         try{
             const data = fs.readFileSync(this.url, 'utf-8');
@@ -26,7 +46,7 @@ class Container{
             console.log('El archivo no puede ser leido.')
             };
         };
-
+    // Get product within the array by ID.
     getById(a){
         if(a > 0){
             let data = JSON.parse(fs.readFileSync(this.url, 'utf-8'));
@@ -40,12 +60,12 @@ class Container{
             console.log('ID Invalido.');
         };
     };
-
+    // Get all the products inside the array.
     getAll(){
         let readFile = JSON.parse(fs.readFileSync(this.url, 'utf-8'));
         return readFile;
     };
-
+    // Delete a specific product in the array.
     deleteById(a){
         if(a > 0){
             let data = JSON.parse(fs.readFileSync(this.url, 'utf-8'));
@@ -63,21 +83,22 @@ class Container{
             console.log('ID Invalido.');
         };
     };
-
+    // YEET all.
     deleteAll(){
         return fs.unlinkSync(this.url);
     };
 }
 
-let testObject = {
-        title:"Test D",
-        price:"Price D",
-        thumbnail:"Picture D"
-};
-
 let test = new Container('./productos.txt');
-console.log(test.getAll());
-console.log(test.save(testObject));
-console.log(test.getAll());
-console.log(test.deleteById(4));
-console.log(test.getAll());
+
+//let testObject = {
+//        title:"Test D",
+//        price:"Price D",
+//        thumbnail:"Picture D"
+//};
+
+//console.log(test.getAll());
+//console.log(test.save(testObject));
+//console.log(test.getAll());
+//console.log(test.deleteById(4));
+//console.log(test.getAll());
