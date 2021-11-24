@@ -1,1 +1,1 @@
-[{"title":"Test A","price":"Price A","thumbnail":"Picture A","id":1},{"title":"Test B","price":"Price B","thumbnail":"Picture B","id":2},{"title":"Test C","price":"Price C","thumbnail":"Picture C","id":3}]
+[{"title":"Test A","price":"Price A","thumbnail":"Picture A","id":1},{"title":"Test B","price":"Price B","thumbnail":"Picture B","id":2},{"title":"Test C","price":"Price C","thumbnail":"Picture C","id":3},{"title":"Test D","price":"Price D","thumbnail":"Picture D","id":4}]
